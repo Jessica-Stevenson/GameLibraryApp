@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameLibraryApp.Views.GameDetailsPage"
+             Title="Game Details">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="20"
+                             Spacing="15">
+
+            <!-- Game Image -->
+            <Image
+                Source="{Binding ImageName}"
+                HeightRequest="250"
+                Aspect="AspectFit" />
+
+            <!-- Title -->
+            <Label
+                Text="{Binding Title}"
+                FontSize="30"
+                FontAttributes="Bold"
+                HorizontalOptions="Center" />
+
+            <!-- Game Information -->
+            <Label
+                Text="{Binding Genre, StringFormat='Genre: {0}'}"
+                FontSize="18" />
+
+            <Label
+                Text="{Binding Platform, StringFormat='Platform: {0}'}"
+                FontSize="18" />
+
+            <Label
+                Text="{Binding ReleaseYear, StringFormat='Release Year: {0}'}"
+                FontSize="18" />
+
+            <Label
+                Text="{Binding Rating, StringFormat='Rating: {0}'}"
+                FontSize="18" />
+
+            <!-- Description -->
+            <Label
+                Text="Description"
+                FontSize="22"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="{Binding Description}"
+                FontSize="16" />
+
+            <!-- Wishlist Status -->
+            <Label
+                Text="{Binding IsInWishlist, StringFormat='In Wishlist: {0}'}"
+                FontSize="18" />
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

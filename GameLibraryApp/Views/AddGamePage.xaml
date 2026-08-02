@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameLibraryApp.Views.AddGamePage"
+             Title="Add Game">
+
+    <ScrollView>
+
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label 
+                Text="Add New Game"
+                FontSize="28"
+                HorizontalOptions="Center"/>
+
+
+            <!-- Title -->
+            <Label Text="Title"/>
+
+            <Entry 
+                x:Name="TitleEntry"
+                Placeholder="Enter game title"/>
+
+
+            <!-- Genre -->
+            <Label Text="Genre"/>
+
+            <Picker
+                x:Name="GenrePicker"
+                Title="Select genre">
+
+                <Picker.Items>
+                    <x:String>Action</x:String>
+                    <x:String>Adventure</x:String>
+                    <x:String>RPG</x:String>
+                    <x:String>Strategy</x:String>
+                    <x:String>Simulation</x:String>
+                    <x:String>Sports</x:String>
+                </Picker.Items>
+
+            </Picker>
+
+
+            <!-- Platform -->
+            <Label Text="Platform"/>
+
+            <Picker
+                x:Name="PlatformPicker"
+                Title="Select platform">
+
+                <Picker.Items>
+                    <x:String>PC</x:String>
+                    <x:String>PlayStation</x:String>
+                    <x:String>Xbox</x:String>
+                    <x:String>Nintendo Switch</x:String>
+                </Picker.Items>
+
+            </Picker>
+
+
+            <!-- Release Year -->
+            <Label Text="Release Year"/>
+
+            <Entry
+                x:Name="ReleaseYearEntry"
+                Placeholder="2026"
+                Keyboard="Numeric"/>
+
+
+            <!-- Rating -->
+            <Label Text="Rating (0-10)"/>
+
+            <Entry
+                x:Name="RatingEntry"
+                Placeholder="8.5"
+                Keyboard="Numeric"/>
+
+
+            <!-- Description -->
+            <Label Text="Description"/>
+
+            <Editor
+                x:Name="DescriptionEditor"
+                Placeholder="Enter game description"
+                HeightRequest="120"/>
+
+
+            <!-- Image -->
+            <Label Text="Image Name"/>
+
+            <Entry
+                x:Name="ImageNameEntry"
+                Placeholder="example.png"/>
+
+
+            <!-- Wishlist -->
+            <HorizontalStackLayout>
+
+                <Label 
+                    Text="Add to Wishlist"
+                    VerticalOptions="Center"/>
+
+                <Switch
+                    x:Name="WishlistSwitch"/>
+
+            </HorizontalStackLayout>
+
+
+            <!-- Result -->
+            <Label
+                x:Name="ResultLabel"
+                TextColor="Red"/>
+
+
+            <!-- Save Button -->
+            <Button
+                Text="Save Game"
+                Clicked="OnSaveGameClicked"/>
+
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>

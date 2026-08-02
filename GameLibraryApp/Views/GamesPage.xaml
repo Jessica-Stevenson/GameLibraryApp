@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameLibraryApp.Views.GamesPage"
+             Title="Games">
+
+    <Grid Padding="20"
+          RowDefinitions="Auto, Auto, Auto, Auto, Auto, Auto, *"
+          RowSpacing="15">
+
+
+        <!-- Page Heading -->
+        <Label Grid.Row="0"
+               Text="Game Library"
+               FontSize="32"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+
+        <!-- Add Game Button -->
+        <Button Grid.Row="1"
+                Text="Add New Game"
+                Clicked="OnAddGameClicked" />
+
+
+        <!-- Search Bar -->
+        <SearchBar Grid.Row="2"
+                   x:Name="GameSearchBar"
+                   Placeholder="Search games..."
+                   TextChanged="OnSearchTextChanged" />
+
+
+        <!-- Genre Picker -->
+        <Picker Grid.Row="3"
+                x:Name="GenrePicker"
+                Title="Select Genre"
+                SelectedIndexChanged="OnGenreChanged">
+
+            <Picker.Items>
+                <x:String>All Genres</x:String>
+                <x:String>Action</x:String>
+                <x:String>Adventure</x:String>
+                <x:String>Racing</x:String>
+                <x:String>Sports</x:String>
+                <x:String>Puzzle</x:String>
+                <x:String>Strategy</x:String>
+                <x:String>Simulation</x:String>
+            </Picker.Items>
+
+        </Picker>
+
+
+        <!-- Result Count -->
+        <Label Grid.Row="4"
+               x:Name="ResultCountLabel"
+               Text="Showing 0 games"
+               FontSize="16" />
+
+
+        <!-- No Results -->
+        <Label Grid.Row="5"
+               x:Name="NoResultsLabel"
+               Text="No games found"
+               TextColor="Red"
+               IsVisible="False"
+               FontSize="16" />
+
+
+        <!-- Games List -->
+        <CollectionView Grid.Row="6"
+                        x:Name="GamesCollectionView">
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate>
+
+                    <Border Stroke="#ccc"
+                            StrokeThickness="1"
+                            StrokeShape="RoundRectangle 10"
+                            Padding="10"
+                            Margin="5">
+
+                        <VerticalStackLayout Spacing="8">
+
+
+                            <Image Source="{Binding ImageName}"
+                                   HeightRequest="150"
+                                   Aspect="AspectFill" />
+
+
+                            <Label Text="{Binding Title}"
+                                   FontSize="20"
+                                   FontAttributes="Bold" />
+
+
+                            <HorizontalStackLayout Spacing="10">
+
+                                <Label Text="{Binding Genre}" />
+
+                                <Label Text="|" />
+
+                                <Label Text="{Binding Platform}" />
+
+                            </HorizontalStackLayout>
+
+
+                            <Label Text="{Binding ReleaseYear, StringFormat='Released: {0}'}" />
+
+
+                            <Label Text="{Binding Rating, StringFormat='Rating: {0}'}" />
+
+
+                            <Label Text="{Binding IsInWishlist, StringFormat='Wishlist: {0}'}" />
+
+
+                            <HorizontalStackLayout Spacing="10">
+
+                                <Button Text="View Details"
+                                        Clicked="OnViewDetailsClicked" />
+
+
+                                <Button Text="Add to Wishlist"
+                                        Clicked="OnAddToWishlistClicked" />
+
+                            </HorizontalStackLayout>
+
+
+                        </VerticalStackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+    </Grid>
+
+</ContentPage>
