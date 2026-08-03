@@ -1,25 +1,52 @@
+using GameLibraryApp.Models;
 using GameLibraryApp.Services;
 
 namespace GameLibraryApp.Views;
 
 public partial class WishlistPage : ContentPage
 {
-    public WishlistPage()
+    private readonly GameDatabaseService _databaseService;
+
+    public WishlistPage(GameDatabaseService databaseService)
     {
         InitializeComponent();
 
-        LoadWishlist();
+        _databaseService = databaseService;
     }
 
-    private void LoadWishlist()
-    {
-        WishlistCollectionView.ItemsSource = WishlistService.GetWishlist();
-    }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        LoadWishlist();
+        await LoadWishlistAsync();
+    }
+
+
+    private async Task LoadWishlistAsync()
+    {
+        var games = await _databaseService.GetGamesAsync();
+
+
+        var wishlistGames = games
+            .Where(game => game.IsInWishlist)
+            .ToList();
+
+
+        WishlistCollectionView.ItemsSource = wishlistGames;
+    }
+
+    private async void OnAddToWishlistClicked(object sender, EventArgs e)
+    {
+        var game = (GameItem)((Button)sender).BindingContext;
+
+        game.IsInWishlist = true;
+
+        await _databaseService.UpdateGameAsync(game);
+
+        await DisplayAlert(
+            "Wishlist",
+            $"{game.Title} added to wishlist!",
+            "OK");
     }
 }

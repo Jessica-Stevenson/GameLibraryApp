@@ -22,6 +22,7 @@ namespace GameLibraryApp
             builder.Services.AddTransient<AddGamePage>();
             builder.Services.AddTransient<GameDetailsPage>();
             builder.Services.AddTransient<WishlistPage>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

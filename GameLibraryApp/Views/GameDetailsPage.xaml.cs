@@ -1,24 +1,48 @@
 using GameLibraryApp.Models;
+using GameLibraryApp.Services;
 
 namespace GameLibraryApp.Views;
 
-[QueryProperty(nameof(Game), "Game")]
+[QueryProperty(nameof(GameId), "id")]
 public partial class GameDetailsPage : ContentPage
 {
-    private GameItem _game;
+    private readonly GameDatabaseService _databaseService;
 
-    public GameItem Game
+    private int _gameId;
+
+    public int GameId
     {
-        get => _game;
+        get => _gameId;
         set
         {
-            _game = value;
-            BindingContext = _game;
+            _gameId = value;
+            LoadGame();
         }
     }
 
-    public GameDetailsPage()
+    public GameDetailsPage(GameDatabaseService databaseService)
     {
         InitializeComponent();
+        _databaseService = databaseService;
+    }
+
+    private async void LoadGame()
+    {
+        var game = await _databaseService.GetGameAsync(_gameId);
+
+        if (game == null)
+        {
+            await DisplayAlert(
+                "Game Not Found",
+                "The selected game could not be found.",
+                "OK"
+            );
+
+            await Shell.Current.GoToAsync("..");
+
+            return;
+        }
+
+        BindingContext = game;
     }
 }

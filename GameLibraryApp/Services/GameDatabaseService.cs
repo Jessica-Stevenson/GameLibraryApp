@@ -134,12 +134,25 @@ public class GameDatabaseService
                 .InsertAsync(game);
         }
     }
+    // Update
+    public async Task<int> UpdateGameAsync(GameItem game)
+    {
+        await InitialiseAsync();
+
+        return await _database!
+            .UpdateAsync(game);
+    }
 
 
     //Delete
     public async Task<int> DeleteGameAsync(GameItem game)
     {
         await InitialiseAsync();
+
+        if (game == null)
+        {
+            return 0;
+        }
 
         return await _database!
             .DeleteAsync(game);

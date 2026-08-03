@@ -122,6 +122,9 @@
                                 <Button Text="Add to Wishlist"
                                         Clicked="OnAddToWishlistClicked" />
 
+                                <Button Text="Edit"
+                                        Clicked="OnEditGameClicked" />
+
                             </HorizontalStackLayout>
 
 

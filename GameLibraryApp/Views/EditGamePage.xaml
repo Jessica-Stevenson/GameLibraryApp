@@ -1,0 +1,43 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GameLibraryApp.Views.EditGamePage"
+             Title="Edit Game">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="12">
+
+            <Entry x:Name="TitleEntry" Placeholder="Title" />
+
+            <Entry x:Name="GenreEntry" Placeholder="Genre" />
+
+            <Entry x:Name="PlatformEntry" Placeholder="Platform" />
+
+            <Entry x:Name="ReleaseYearEntry"
+                   Placeholder="Release Year"
+                   Keyboard="Numeric" />
+
+            <Entry x:Name="RatingEntry"
+                   Placeholder="Rating"
+                   Keyboard="Numeric" />
+
+            <Editor x:Name="DescriptionEditor"
+                    Placeholder="Description"
+                    AutoSize="TextChanges"
+                    HeightRequest="100" />
+
+            <HorizontalStackLayout>
+                <Switch x:Name="WishlistSwitch" />
+                <Label Text="Add to Wishlist"
+                       VerticalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <Button Text="Update Game"
+                Clicked="OnUpdateGameClicked" />
+
+            <Button Text="Delete Game"
+                Clicked="OnDeleteGameClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

@@ -124,12 +124,8 @@ public partial class GamesPage : ContentPage
         if (game != null)
         {
             await Shell.Current.GoToAsync(
-                nameof(GameDetailsPage),
-                true,
-                new Dictionary<string, object>
-                {
-                    { "Game", game }
-                });
+                $"{nameof(GameDetailsPage)}?id={game.Id}"
+            );
         }
     }
 
@@ -143,13 +139,34 @@ public partial class GamesPage : ContentPage
 
         if (game != null)
         {
-            await _databaseService.SaveGameAsync(game);
+            game.IsInWishlist = true;
+
+            await _databaseService.UpdateGameAsync(game);
+
+            button.Text = "In Wishlist";
+            button.IsEnabled = false;
+
+
+            await _databaseService.UpdateGameAsync(game);
 
 
             await DisplayAlert(
                 "Wishlist",
                 $"{game.Title} added to wishlist!",
                 "OK");
+        }
+    }
+
+    private async void OnEditGameClicked(object sender, EventArgs e)
+    {
+        var button = sender as Button;
+        var game = button?.BindingContext as GameItem;
+
+        if (game != null)
+        {
+            await Shell.Current.GoToAsync(
+                $"{nameof(EditGamePage)}?id={game.Id}"
+            );
         }
     }
 }
